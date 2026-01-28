@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Login</title>
+    <!-- Google Font 'Poppins' to match the clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. Background & Layout --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Vibrant Purple/Blue Gradient */
+            background: linear-gradient(135deg, #6a82fb 0%, #764ba2 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- 2. The White Card --- */
+        .login-card {
+            background-color: #ffffff;
+            width: 380px;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); /* Soft drop shadow */
+        }
+
+        /* --- 3. Typography --- */
+        h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.6rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* --- 4. Inputs --- */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e1e1e1; /* Light gray border */
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #333;
+            box-sizing: border-box; /* Ensures padding stays inside width */
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        input:focus {
+            border-color: #6a82fb; /* Blue accent on focus */
+        }
+
+        /* Error visual */
+        input.error-border {
+            border-color: #ff4d4d;
+            background-color: #fff5f5;
+        }
+
+        /* --- 5. Button --- */
+        button {
+            width: 100%;
+            padding: 14px;
+            /* Gradient Button to match background theme */
+            background: linear-gradient(90deg, #6a82fb 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            background: #4cd137; /* Success Green */
+            cursor: default;
+            box-shadow: none;
+        }
+
+        /* --- 6. Hidden Result Section --- */
+        #result-area {
+            display: none;
+            margin-top: 25px;
+            text-align: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 20px;
+            animation: fadeIn 0.5s;
+        }
+
+        .success-text {
+            color: #4cd137;
+            font-weight: 600;
+        }
+        
+        .timestamp {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Shake animation for errors */
+        .shake { animation: shake 0.4s; }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card" id="card">
+        <h2>System Login</h2>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+
+        <button onclick="handleLogin()" id="loginBtn">Log In</button>
+
+        <!-- Hidden Result Area -->
+        <div id="result-area">
+            <div class="success-text">Access Granted</div>
+            <div id="user-display" style="font-weight:500; margin-top:5px; color:#333;"></div>
+            <div class="timestamp" id="time-display"></div>
+            <div style="font-size: 0.75rem; color: #aaa; margin-top: 10px;">
+                Attendance file downloaded.
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
